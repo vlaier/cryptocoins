@@ -1,0 +1,7 @@
+.chartContainer {
+  height: 350px;
+  border: 2px dotted green;
+}
+.chart {
+  height: 350px;
+}
