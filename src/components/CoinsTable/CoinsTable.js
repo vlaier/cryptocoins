@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { priceFormatter, btcFormatter } from "../../utils/priceFormatter";
+import useWindowResize from "../../hooks/useWindowResize";
 export default function CoinsTable({ coins }) {
+  const windowSize = useWindowResize();
+  const tableHeight = 0.9 * (windowSize.height - 128);
   const [direction, setDirection] = useState("desc");
   const [value, setValue] = useState("price");
+  console.log(windowSize);
   const setValueAndDirection = (localValue) => {
     setValue(localValue);
     direction === "asc" ? setDirection("desc") : setDirection("asc");
@@ -19,7 +23,6 @@ export default function CoinsTable({ coins }) {
   };
   const sortedCoins = sortBy();
   const PriceChangeBadge = ({ value }) => {
-    console.log(value);
     return value < 0 ? (
       <span className="p-2 text-red-500 bg-red-300 mx-auto rounded-xl flex items-center w-5/12 justify-center ">
         <FaArrowDown className="mr-1 h-3" />
@@ -35,7 +38,7 @@ export default function CoinsTable({ coins }) {
   return (
     <div
       className=" rounded-lg overflow-y-scroll h-9/12 bg-secondary"
-      style={{ height: "50vh" }}
+      style={{ height: `${tableHeight}px` }}
     >
       <table className="w-full m-auto ">
         <thead className="sticky top-0 text-gray-500 text-md text-left h-20 bg-gray-50 ">
