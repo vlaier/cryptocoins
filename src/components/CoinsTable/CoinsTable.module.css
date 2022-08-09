@@ -1,9 +1,0 @@
-.table {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  align-items: center;
-  grid-template-rows: repeat(200px);
-}
-.table img {
-  height: 50px;
-}

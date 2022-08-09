@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import styles from "./CoinsTable.module.css";
 import Link from "next/link";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { priceFormatter, btcFormatter } from "../../utils/priceFormatter";
 export default function CoinsTable({ coins }) {
   const [direction, setDirection] = useState("desc");
   const [value, setValue] = useState("price");
@@ -17,53 +18,64 @@ export default function CoinsTable({ coins }) {
     }
   };
   const sortedCoins = sortBy();
-  const coinElements = sortedCoins.map((coin) => (
-    <Link href={`coin/${coin.id}`} key={coin.id}>
-      <div>
-        <div className={styles.coin_logo}>
-          <img src={coin.icon} alt={`${coin.name} logo`} />
-        </div>
-        <div className={styles.coin_name}>{coin.name}</div>
-        <div className={styles.coin_price}>{coin.price}</div>
-        <div className={styles.coin_name}>{coin.marketCap}</div>
-        <div className={styles.coin_name}>{coin.priceBtc}</div>
-      </div>
-    </Link>
-  ));
+  const PriceChangeBadge = ({ value }) => {
+    console.log(value);
+    return value < 0 ? (
+      <span className="p-2 text-red-500 bg-red-300 mx-auto rounded-xl flex items-center w-5/12 justify-center ">
+        <FaArrowDown className="mr-1 h-3" />
+        {value}%
+      </span>
+    ) : (
+      <span className="p-2 text-green-500 bg-green-300 mx-auto rounded-xl flex items-center w-5/12 justify-center ">
+        <FaArrowUp className="mr-1 h-3" />
+        {value}%
+      </span>
+    );
+  };
   return (
-    <div className={styles.table}>
-      <button
-        className={styles.column_name}
-        onClick={() => setValueAndDirection("name")}
-      >
-        Name
-      </button>
-      <button
-        className={styles.column_name}
-        onClick={() => setValueAndDirection("name")}
-      >
-        Name
-      </button>
-      <button
-        className={styles.column_name}
-        onClick={() => setValueAndDirection("price")}
-      >
-        Price{" "}
-      </button>
-      <button
-        className={styles.column_name}
-        onClick={() => setValueAndDirection("marketCap")}
-      >
-        Market Cap
-      </button>
-      <button
-        className={styles.column_name}
-        onClick={() => setValueAndDirection("priceBtc")}
-      >
-        Price in BTC
-      </button>
-
-      {coinElements}
+    <div
+      className=" rounded-lg overflow-y-scroll h-9/12 bg-secondary"
+      style={{ height: "50vh" }}
+    >
+      <table className="w-full m-auto ">
+        <thead className="sticky top-0 text-gray-500 text-md text-left h-20 bg-gray-50 ">
+          <tr>
+            <th onClick={() => setValueAndDirection("name")}>Name</th>
+            <th onClick={() => setValueAndDirection("price")}>Price </th>
+            <th onClick={() => setValueAndDirection("marketCap")}>
+              Market Cap
+            </th>
+            <th onClick={() => setValueAndDirection("priceChange1d")}>
+              24h Change
+            </th>
+          </tr>
+        </thead>
+        <tbody className=" w-full overflow-y-scroll">
+          {sortedCoins.map((coin) => (
+            <tr key={coin.id} className="hover:bg-gray-700">
+              <Link href={`coin/${coin.id}`}>
+                <td className="p-3 text-md text-white cursor-pointer">
+                  <img
+                    src={coin.icon}
+                    alt={`${coin.name} logo`}
+                    className="h-12 inline "
+                  />
+                  <span>{coin.name}</span>
+                </td>
+              </Link>
+              <td className="p-3 text-md text-white ">
+                {priceFormatter.format(coin.price)}
+              </td>
+              <td className="p-3 text-md text-white ">
+                {priceFormatter.format(coin.marketCap)}
+              </td>
+              <td className="p-3 text-md text-white ">
+                <PriceChangeBadge value={coin.priceChange1d} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

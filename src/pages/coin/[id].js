@@ -5,12 +5,7 @@ import styles from "./Coin.module.css";
 import convertChartData from "../../utils/convertChartData";
 import CoinChart from "../../components/Chart/Chart";
 import { FaTwitter } from "react-icons/fa";
-
-const formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  minimumFractionDigits: 2,
-});
+import { priceFormatter } from "../../utils/priceFormatter";
 
 export default function coinId({
   coin: { coin: coin },
@@ -24,7 +19,7 @@ export default function coinId({
         <div className={styles.coinHeader}>
           <img src={coin.icon} alt={`${coin.name} logo`} />
           <h2>{`${coin.name} (${coin.symbol})`}</h2>
-          <p>{`${formatter.format(coin.price)}`}</p>
+          <p>{`${priceFormatter.format(coin.price)}`}</p>
         </div>
         <div className={styles.coinOverview}>
           <div className={styles.coinSocials}>
@@ -39,9 +34,9 @@ export default function coinId({
           </div>
         </div>
       </div>
-      {/* <div className={styles.chart}>
+      <div className={styles.chart}>
         <CoinChart chartData={convertChartData(chartData)} />
-      </div> */}
+      </div>
 
       <Link href={"../"}>
         <button>back</button>
