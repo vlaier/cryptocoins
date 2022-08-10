@@ -1,9 +1,8 @@
 import React from "react";
 import Layout from "../../components/Layout/Layout";
 import Link from "next/link";
-import styles from "./Coin.module.css";
 import convertChartData from "../../utils/convertChartData";
-import CoinChart from "../../components/Chart/Chart";
+import LineChart from "../../components/LineChart/LineChart";
 import { FaTwitter } from "react-icons/fa";
 import { priceFormatter } from "../../utils/priceFormatter";
 
@@ -15,18 +14,18 @@ export default function coinId({
   console.log(coin);
   return (
     <Layout>
-      <div className={`text-white ${styles.coinInfo}`}>
-        <div className={styles.coinHeader}>
+      <div className="text-white">
+        <div>
           <img src={coin.icon} alt={`${coin.name} logo`} />
           <h2>{`${coin.name} (${coin.symbol})`}</h2>
           <p>{`${priceFormatter.format(coin.price)}`}</p>
         </div>
-        <div className={styles.coinOverview}>
-          <div className={styles.coinSocials}>
-            <div className={styles.coinSocialRow}>
-              <span className={styles.rowTitle}>Website</span>
-              <div className={styles.coinItems}>
-                <div className={styles.coinItem}>
+        <div>
+          <div>
+            <div>
+              <span>Website</span>
+              <div>
+                <div>
                   <Link href={coin.websiteUrl}>{coin.websiteUrl}</Link>
                 </div>
               </div>
@@ -34,8 +33,8 @@ export default function coinId({
           </div>
         </div>
       </div>
-      <div className={styles.chart}>
-        <CoinChart chartData={convertChartData(chartData)} />
+      <div className="w-full flex ">
+        <LineChart chartData={convertChartData(chartData)} />
       </div>
 
       <Link href={"../"}>
