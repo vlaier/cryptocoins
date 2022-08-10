@@ -24,12 +24,12 @@ export default function CoinsTable({ coins }) {
   const sortedCoins = sortBy();
   const PriceChangeBadge = ({ value }) => {
     return value < 0 ? (
-      <span className="p-2 text-red-500 text-sm bg-red-300 mx-auto rounded-xl flex items-center w-6/12 justify-center ">
+      <span className="p-2 text-red-500 text-sm bg-red-300  rounded-lg flex items-center w-4/12 justify-center ">
         <FaArrowDown className="mr-1 h-2" />
         {value}%
       </span>
     ) : (
-      <span className="p-2 text-green-500 text-sm bg-green-300 mx-auto rounded-xl flex items-center w-6/12 justify-center ">
+      <span className="p-2 text-green-500 text-sm bg-green-300  rounded-xl flex items-center w-4/12 justify-center ">
         <FaArrowUp className="mr-1 h-2" />
         {value}%
       </span>
