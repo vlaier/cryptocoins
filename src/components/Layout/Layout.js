@@ -1,16 +1,6 @@
 import Head from "next/head";
-// import Navbar from "../Navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 export default function Layout({ children, title = "CryptoCoins" }) {
-  const Navbar = () => {
-    return (
-      <nav className=" bg-secondary h-screen w-60">
-        <div className="container-fluid w-full flex items-center justify-between">
-          <div className="container-fluid">Fission Crypto</div>
-        </div>
-      </nav>
-    );
-  };
-
   return (
     <div className="flex  bg-primary ">
       <Head>
