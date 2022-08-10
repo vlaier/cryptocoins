@@ -22,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-export default function CoinChart({ chartData: chartData }) {
+export default function LineChart({ chartData: chartData }) {
   const data = {
     labels: chartData.timeLabels.map((tl) => tl.toLocaleTimeString("pl-PL")),
     datasets: [
@@ -64,8 +64,6 @@ export default function CoinChart({ chartData: chartData }) {
       },
     },
   };
-  chartData.timeLabels.forEach((element) => {
-    element.getMinutes() === 0 && console.log(element);
-  });
+  chartData.timeLabels.forEach((element) => {});
   return <Line options={options} data={data} />;
 }

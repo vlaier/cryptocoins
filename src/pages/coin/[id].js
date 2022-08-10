@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import Link from "next/link";
 import convertChartData from "../../utils/convertChartData";
 import LineChart from "../../components/LineChart/LineChart";
+import Calculator from "../../components/Calculator/Calculator";
 import { FaTwitter } from "react-icons/fa";
 import { priceFormatter } from "../../utils/priceFormatter";
 
@@ -11,7 +12,7 @@ export default function coinId({
   chart: { chart: chart },
 }) {
   const chartData = chart;
-  console.log(coin);
+
   return (
     <Layout>
       <div className="text-white">
@@ -33,8 +34,18 @@ export default function coinId({
           </div>
         </div>
       </div>
-      <div className="w-full flex ">
-        <LineChart chartData={convertChartData(chartData)} />
+      <div className="w-full flex gap-10 ">
+        <div className="w-[66%] rounded-md shadow-md bg-secondary h-[50vh] p-3">
+          <LineChart chartData={convertChartData(chartData)} />
+        </div>
+        <div className="w-[33%] rounded-md shadow-md bg-secondary h-[50vh] p-3">
+          <Calculator
+            iconUrl={coin.icon}
+            baseCurrencyId={coin.symbol}
+            priceInBtc={coin.priceBtc}
+            priceInUsd={coin.price}
+          />
+        </div>
       </div>
 
       <Link href={"../"}>
