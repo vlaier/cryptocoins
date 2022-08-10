@@ -10,8 +10,8 @@ export default function Layout({ children, title = "CryptoCoins" }) {
       </Head>
       <Navbar />
       <div className="h-screen gap-10 flex-auto  flex flex-col">
-        <div className=" w-full h-32  shadow-md flex  items-center justify-between">
-          Fussion
+        <div className=" w-full h-16  shadow-md flex  items-center justify-between">
+          Fussio
         </div>
         <main className="grow overflow-y-scroll  mx-5">{children}</main>
       </div>
