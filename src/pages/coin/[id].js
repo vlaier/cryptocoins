@@ -15,7 +15,7 @@ export default function coinId({
   console.log(coin);
   return (
     <Layout>
-      <div className={styles.coinInfo}>
+      <div className={`text-white ${styles.coinInfo}`}>
         <div className={styles.coinHeader}>
           <img src={coin.icon} alt={`${coin.name} logo`} />
           <h2>{`${coin.name} (${coin.symbol})`}</h2>

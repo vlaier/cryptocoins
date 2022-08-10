@@ -8,7 +8,7 @@ export default function CoinsTable({ coins }) {
   const tableHeight = 0.9 * (windowSize.height - 128);
   const [direction, setDirection] = useState("desc");
   const [value, setValue] = useState("price");
-  console.log(windowSize);
+
   const setValueAndDirection = (localValue) => {
     setValue(localValue);
     direction === "asc" ? setDirection("desc") : setDirection("asc");
@@ -24,13 +24,13 @@ export default function CoinsTable({ coins }) {
   const sortedCoins = sortBy();
   const PriceChangeBadge = ({ value }) => {
     return value < 0 ? (
-      <span className="p-2 text-red-500 bg-red-300 mx-auto rounded-xl flex items-center w-5/12 justify-center ">
-        <FaArrowDown className="mr-1 h-3" />
+      <span className="p-2 text-red-500 text-sm bg-red-300 mx-auto rounded-xl flex items-center w-6/12 justify-center ">
+        <FaArrowDown className="mr-1 h-2" />
         {value}%
       </span>
     ) : (
-      <span className="p-2 text-green-500 bg-green-300 mx-auto rounded-xl flex items-center w-5/12 justify-center ">
-        <FaArrowUp className="mr-1 h-3" />
+      <span className="p-2 text-green-500 text-sm bg-green-300 mx-auto rounded-xl flex items-center w-6/12 justify-center ">
+        <FaArrowUp className="mr-1 h-2" />
         {value}%
       </span>
     );

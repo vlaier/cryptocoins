@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import styles from "./Chart.module.css";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -56,22 +56,20 @@ export default function CoinChart({ chartData: chartData }) {
       x: {
         ticks: {
           callback: function (val, index) {
-            return index % 5 === 0 ? this.getLabelForValue(val) : "";
+            return chartData.timeLabels[index].getMinutes() === 0
+              ? chartData.timeLabels[index].getHours()
+              : "";
           },
         },
       },
     },
   };
-
+  chartData.timeLabels.forEach((element) => {
+    element.getMinutes() === 0 && console.log(element);
+  });
   return (
-    <div className={styles.chartContainer}>
-      <Line
-        className={styles.chart}
-        options={options}
-        data={data}
-        height={350}
-      />
-      ;
+    <div className="relative h-72 bg-gray-50 max-w-[80%]">
+      <Line options={options} data={data} />;
     </div>
   );
 }
