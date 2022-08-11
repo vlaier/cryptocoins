@@ -38,7 +38,7 @@ export default function coinId({
         <div className="w-[66%] rounded-md shadow-md bg-secondary h-[50vh] p-3">
           <LineChart chartData={convertChartData(chartData)} />
         </div>
-        <div className="w-[33%] rounded-md shadow-md bg-secondary h-[50vh] p-3">
+        <div className="w-[33%] rounded-md shadow-md bg-secondary h-fit p-3">
           <Calculator
             iconUrl={coin.icon}
             baseCurrencyId={coin.symbol}

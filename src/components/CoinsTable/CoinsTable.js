@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { RiArrowUpSFill, RiArrowDownSFill } from "react-icons/ri";
 import { priceFormatter, btcFormatter } from "../../utils/priceFormatter";
 import useWindowResize from "../../hooks/useWindowResize";
 export default function CoinsTable({ coins }) {
@@ -24,14 +24,13 @@ export default function CoinsTable({ coins }) {
   const sortedCoins = sortBy();
   const PriceChangeBadge = ({ value }) => {
     return value < 0 ? (
-      <span className="p-2 text-red-500 text-sm bg-red-300  rounded-lg flex items-center w-4/12 justify-center ">
-        <FaArrowDown className="mr-1 h-2" />
+      <span className="p-2 text-red-500 text-xs bg-red-300  rounded-lg flex items-center  justify-center w-fit">
+        <RiArrowDownSFill className=" h-4" />
         {value}%
       </span>
     ) : (
-      <span className="p-2 text-green-500 text-sm bg-green-300  rounded-xl flex items-center w-4/12 justify-center ">
-        <FaArrowUp className="mr-1 h-2" />
-        {value}%
+      <span className="p-2 text-green-500 text-xs bg-green-300  rounded-lg flex items-center  justify-center w-fit">
+        <RiArrowUpSFill className=" h-4" />+{value}%
       </span>
     );
   };
@@ -57,22 +56,24 @@ export default function CoinsTable({ coins }) {
           {sortedCoins.map((coin) => (
             <tr key={coin.id} className="hover:bg-gray-700">
               <Link href={`coin/${coin.id}`}>
-                <td className="p-3 text-md text-white cursor-pointer">
-                  <img
-                    src={coin.icon}
-                    alt={`${coin.name} logo`}
-                    className="h-12 inline "
-                  />
-                  <span>{coin.name}</span>
+                <td className=" text-md text-white cursor-pointer">
+                  <div className="flex gap-5 items-center">
+                    <img
+                      src={coin.icon}
+                      alt={`${coin.name} logo`}
+                      className="h-12 inline "
+                    />
+                    <span>{coin.name}</span>
+                  </div>
                 </td>
               </Link>
-              <td className="p-3 text-md text-white ">
+              <td className=" text-md text-white ">
                 {priceFormatter.format(coin.price)}
               </td>
-              <td className="p-3 text-md text-white ">
+              <td className=" text-md text-white ">
                 {priceFormatter.format(coin.marketCap)}
               </td>
-              <td className="p-3 text-md text-white ">
+              <td className=" text-md text-white ">
                 <PriceChangeBadge value={coin.priceChange1d} />
               </td>
             </tr>
