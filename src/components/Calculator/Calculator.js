@@ -1,43 +1,67 @@
 import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import Image from "next/image";
+import usdCoin from "./images/usdCoin.png";
+import btcCoin from "./images/btcCoin.png";
+import { priceFormatter, btcFormatter } from "../../utils/priceFormatter";
 export default function ConvertToUsd({
   baseCurrencyId,
   priceInBtc,
   priceInUsd,
   iconUrl,
 }) {
-  const [amount, setAmount] = useState(1);
-  const [conversionRate, setConversionRate] = useState(priceInBtc);
-  function handleChange(event) {
-    setConversionRate(event.target.value);
-  }
+  const [amount, setAmount] = useState("");
+
   return (
-    <div className="">
-      <div className="relative w-full flex items-center text-primary">
+    <div className="flex flex-col gap-10 py-5">
+      <span className="text-2xl text-center text-white">
+        Conversion Calculator
+      </span>
+      <div className="relative w-full flex items-center text-primary appearance-none">
         <div className="relative w-full">
-          <span className="absolute top-[-6px] bg-secondary left-5 text-xs text-white">{`${baseCurrencyId} amount`}</span>
+          <span className="absolute top-[-8px] bg-secondary left-5 text-xs text-white">{`${baseCurrencyId} amount`}</span>
           <input
-            className=" pl-14 py-4 shadow-hover shadow-sm text-white border-hover border-2 border-solid rounded-md w-full bg-transparent "
+            className="pl-14 py-4 shadow-hover shadow-sm text-white border-hover border-2 border-solid rounded-md w-full bg-transparent "
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            type="number"
-            placeholder="Amount"
+            type="text"
+            placeholder="Convert..."
           />
         </div>
         <img
           src={iconUrl}
           alt={`${baseCurrencyId} icon.`}
-          className="absolute w-10 left-2  "
+          className="absolute w-10 h-10 left-2  "
         />
       </div>
-
-      <p>{`${amount * conversionRate} `}</p>
-      <div className="relative  ">
-        <select onChange={handleChange} className="h-10 w-full pl-10">
-          <option value={priceInBtc}>BTC</option>
-
-          <option value={priceInUsd}>USD</option>
-        </select>
+      <div className="relative w-full flex items-center text-primary appearance-none">
+        <div className="relative w-full">
+          <span className="absolute top-[-8px] bg-secondary left-5 text-xs text-white">{`USD amount`}</span>
+          <input
+            className="pl-14 py-4 shadow-hover shadow-sm text-white border-hover border-2 border-solid rounded-md w-full bg-transparent "
+            value={priceFormatter.format(amount * priceInUsd)}
+            type="text"
+            placeholder="To..."
+            disabled
+          />
+        </div>
+        <div className="absolute w-10 h-10 left-2">
+          <Image src={usdCoin} alt={`${baseCurrencyId} icon.`} />
+        </div>
+      </div>
+      <div className="relative w-full flex items-center text-primary appearance-none">
+        <div className="relative w-full">
+          <span className="absolute top-[-8px] bg-secondary left-5 text-xs text-white">{`BTC amount`}</span>
+          <input
+            className="pl-14 py-4 shadow-hover shadow-sm text-white border-hover border-2 border-solid rounded-md w-full bg-transparent "
+            value={btcFormatter.format(amount * priceInBtc)}
+            type="text"
+            placeholder="To..."
+            disabled
+          />
+        </div>
+        <div className="absolute w-10 h-10 left-2">
+          <Image src={btcCoin} alt={`BTC icon.`} />
+        </div>
       </div>
     </div>
   );
