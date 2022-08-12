@@ -4,7 +4,7 @@ import SearchInput from "../components/SearchInput/SearchInput";
 import CoinsTable from "../components/CoinsTable/CoinsTable.js";
 import { loadCoins } from "../lib/apiCallls";
 
-export default function Home({ coins: { coins: coins } }) {
+export default function Home({ coins: { coins } }) {
   const [query, setQuery] = useState("");
   const filtrerCoins = () => {};
 
