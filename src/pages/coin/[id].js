@@ -34,11 +34,11 @@ export default function coinId({
           </div>
         </div>
       </div>
-      <div className="w-full flex gap-10 ">
-        <div className="w-[66%] rounded-md shadow-md bg-secondary h-[50vh] p-3">
+      <div className="w-full flex flex-col md:flex-row gap-10 ">
+        <div className="md:w-[66%] w-full rounded-md shadow-md bg-secondary h-[50vh] p-3">
           <LineChart chartData={convertChartData(chartData)} />
         </div>
-        <div className="w-[33%] rounded-md shadow-md bg-secondary h-fit p-3">
+        <div className="md:w-[33%] w-full   rounded-md shadow-md bg-secondary h-fit p-3">
           <Calculator
             iconUrl={coin.icon}
             baseCurrencyId={coin.symbol}

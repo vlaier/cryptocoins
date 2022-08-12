@@ -36,23 +36,39 @@ export default function CoinsTable({ coins }) {
   };
   return (
     <div
-      className=" rounded-lg overflow-y-scroll h-9/12 bg-secondary"
+      className=" rounded-lg overflow-y-scroll  h-9/12 bg-secondary"
       style={{ height: `${tableHeight}px` }}
     >
       <table className="w-full m-auto ">
         <thead className="sticky top-0 text-gray-500 text-md text-left h-20 bg-gray-50 ">
-          <tr>
-            <th onClick={() => setValueAndDirection("name")}>Name</th>
-            <th onClick={() => setValueAndDirection("price")}>Price </th>
-            <th onClick={() => setValueAndDirection("marketCap")}>
+          <tr className="cursor-pointer">
+            <th
+              onClick={() => setValueAndDirection("name")}
+              className="hover:text-gray-600 hover:bg-gray-100"
+            >
+              Name
+            </th>
+            <th
+              onClick={() => setValueAndDirection("price")}
+              className="hover:text-gray-600 hover:bg-gray-100"
+            >
+              Price
+            </th>
+            <th
+              onClick={() => setValueAndDirection("marketCap")}
+              className="hover:text-gray-600 hover:bg-gray-100"
+            >
               Market Cap
             </th>
-            <th onClick={() => setValueAndDirection("priceChange1d")}>
+            <th
+              onClick={() => setValueAndDirection("priceChange1d")}
+              className="hover:text-gray-600 hover:bg-gray-100"
+            >
               24h Change
             </th>
           </tr>
         </thead>
-        <tbody className=" w-full overflow-y-scroll">
+        <tbody className=" w-full overflow-y-scroll text-sm">
           {sortedCoins.map((coin) => (
             <tr key={coin.id} className="hover:bg-gray-700">
               <Link href={`coin/${coin.id}`}>

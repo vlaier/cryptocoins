@@ -1,40 +1,36 @@
 import { useState } from "react";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { FaHome, FaNewspaper } from "react-icons/fa";
+import Link from "next/link";
+import Home from "../../pages";
 export default function Navbar() {
   const [isFolded, setIsFolded] = useState(false);
-  const NavbarItem = ({ children }) => {
+  const NavbarItem = ({ text, link, icon }) => {
     return (
-      <div className="py-3 rounded-md text-lg text-gray-500 hover:text-white hover:bg-hover text-center border-solid border-2  border-gray-700 w-8/12">
-        {children}
+      <div className="border-2 w-20 h-20 p-2 text-gray-500 border-hover rounded-3xl lg:rounded-xl flex justify-center items-center cursor-pointer lg:border-none lg:w-full lg:px-1 hover:text-white hover:bg-hover  hover:border-none ">
+        <Link href={link}>
+          <span className=" relative   flex flex-col justify-center items-center lg:flex-row lg:justify-start lg:pl-5 lg:gap-5 lg:items-center lg:w-full">
+            <div className="text-center text-3xl">{icon}</div>
+            <div className="lg:text-xl lg:font-bold">{text}</div>
+          </span>
+        </Link>
       </div>
     );
   };
   const toggleIsFolded = () => {
     setIsFolded(!isFolded);
   };
-  return !isFolded ? (
-    <nav className=" bg-secondary h-screen basis-60 flex flex-col gap-20 justify-start">
-      <div className="flex items-center justify-between w-full">
-        <h1 className="text-white text-2xl ">Fizzy Coin</h1>
-        <AiOutlineMenuFold
-          className="text-white text-2xl cursor-pointer"
-          onClick={toggleIsFolded}
-        />
+  return (
+    <nav className="w-screen py-1 bg-secondary shadow-inner  shadow-hover h-24  flex items-center lg:h-screen lg:shadow-sm px-2 lg:w-72">
+      <div className="hidden">
+        <h1 className=" ">Fizzy Coin</h1>
+        <AiOutlineMenuFold className=" " onClick={toggleIsFolded} />
       </div>
 
-      <div className=" flex flex-col items-center justify-between w-full gap-20">
-        <NavbarItem>Profil</NavbarItem>
-        <NavbarItem>Profil</NavbarItem>
-        <NavbarItem>Profil</NavbarItem>
-      </div>
-    </nav>
-  ) : (
-    <nav className=" bg-secondary h-screen w-10 flex flex-col justify-start bg-opacity-30">
-      <div className="flex items-center justify-center w-full">
-        <AiOutlineMenuUnfold
-          className="text-white text-2xl cursor-pointer"
-          onClick={toggleIsFolded}
-        />
+      <div className="flex w-full justify-center shadow-sm lg:gap-10 lg:flex-col lg:items-center lg:px-2">
+        <NavbarItem link={"/"} text={"Home"} icon={<FaHome />} />
+        <NavbarItem link={"/news"} text={"News"} icon={<FaNewspaper />} />
+        <NavbarItem link={"/news"} text={"News"} icon={<FaNewspaper />} />
       </div>
     </nav>
   );
