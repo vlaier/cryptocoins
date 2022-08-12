@@ -64,6 +64,6 @@ export default function LineChart({ chartData: chartData }) {
       },
     },
   };
-  chartData.timeLabels.forEach((element) => {});
+
   return <Line options={options} data={data} />;
 }
