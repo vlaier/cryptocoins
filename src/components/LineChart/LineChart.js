@@ -103,7 +103,7 @@ export default function LineChart({ chartData: chartValues }) {
             chart.ctx,
             chart.chartArea,
             "rgba(58, 170, 67, 0)",
-            "rgba(58, 170, 67, 0.1)"
+            "rgba(58, 170, 67, 0.125)"
           ),
 
           yAxisID: "y",
@@ -117,7 +117,7 @@ export default function LineChart({ chartData: chartValues }) {
             chart.ctx,
             chart.chartArea,
             "rgba(255, 202, 0, 0)",
-            "rgba(255, 202, 0, 0.1)"
+            "rgba(255, 202, 0, 0.125)"
           ),
           yAxisID: "y1",
           fill: true,
@@ -130,7 +130,7 @@ export default function LineChart({ chartData: chartValues }) {
             chart.ctx,
             chart.chartArea,
             "rgba(0, 102, 234, 0)",
-            "rgba(0, 102, 234, 0.1)"
+            "rgba(0, 102, 234, 0.125)"
           ),
           yAxisID: "y2",
           fill: true,
