@@ -32,7 +32,12 @@ export default function NewsItem({ newsObject }) {
               </p>
             </div>
           </div>
-          <a href={newsObject.link} target="_blank" className="self-center">
+          <a
+            href={newsObject.link}
+            target="_blank"
+            rel="noreferrer"
+            className="self-center"
+          >
             <div className=" sw-fit text-center px-6 py-3 bg-primary text-white  text-xs leading-tight uppercase rounded-md shadow-md hover:bg-hover hover:shadow-lg transition duration-150 ease-in-out cursor-pointer">
               Read More
             </div>

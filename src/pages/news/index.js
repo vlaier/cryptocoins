@@ -5,7 +5,7 @@ import { loadNews } from "../../lib/apiCallls";
 import NewsItem from "../../components/NewsItem/NewsItem";
 export default function News({ news: { news } }) {
   const newsElements = news.map((newsObject) => (
-    <NewsItem newsObject={newsObject} />
+    <NewsItem newsObject={newsObject} key={newsObject.id} />
   ));
   return (
     <Layout>

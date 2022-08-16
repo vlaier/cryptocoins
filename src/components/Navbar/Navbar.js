@@ -2,7 +2,6 @@ import { useState } from "react";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaHome, FaNewspaper } from "react-icons/fa";
 import Link from "next/link";
-import Home from "../../pages";
 export default function Navbar() {
   const [isFolded, setIsFolded] = useState(false);
   const NavbarItem = ({ text, link, icon }) => {
